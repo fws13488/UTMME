@@ -183,11 +183,12 @@ local success, errorMessage = pcall(function()
 
 		local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
 		local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
+		local tooldamage = damage + damageboost
 
 		local NewFrame = AWeaponFrame:Clone()
 		NewFrame.Name = v.Name
 		NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
-		NewFrame.WeaponDamage.Text = math.floor(damage + damageboost)
+		NewFrame.WeaponDamage.Text = "Damage: "..tooldamage
 		NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
 		NewFrame.Parent = Weapons
 		NewFrame.EquipButton.MouseButton1Click:Connect(function()
