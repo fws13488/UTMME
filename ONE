@@ -88,6 +88,7 @@ Weapons.BackgroundTransparency = 1.000
 Weapons.Position = UDim2.new(0, 0, 0.0984251946, 0)
 Weapons.Size = UDim2.new(0, 523, 0, 458)
 Weapons.CanvasSize = UDim2.new(0, 0, 1, 0)
+Weapons.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
 UIGridLayout.Parent = Weapons
 UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
