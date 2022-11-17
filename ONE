@@ -208,3 +208,9 @@ local success, errorMessage = pcall(function()
 	Folder:Destroy()
 
 end)
+
+if not success then
+
+	warn(errorMessage, os.data())
+
+end
