@@ -177,7 +177,7 @@ visibleButton.MouseButton1Click:Connect(function()
 
 end)
 
-for i, v in ipairs(game:GetService():FindFirstChild("Weapons"):GetChildren()) do
+for i, v in ipairs(game:GetService("Lighting"):FindFirstChild("Weapons"):GetChildren()) do
 
 	local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
 	local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
