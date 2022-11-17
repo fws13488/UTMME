@@ -189,6 +189,7 @@ local success, errorMessage = pcall(function()
 		NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
 		NewFrame.WeaponDamage.Text = math.floor(damage + damageboost)
 		NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
+		NewFrame.Parent = Weapons
 		NewFrame.EquipButton.MouseButton1Click:Connect(function()
 
 			local args = {
@@ -208,9 +209,3 @@ local success, errorMessage = pcall(function()
 	Folder:Destroy()
 
 end)
-
-if not success then
-
-	warn(errorMessage)
-
-end
