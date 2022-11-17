@@ -196,6 +196,22 @@ InputBox.Changed:Connect(function()
 
 		end
 
+	else
+
+		for i, v in ipairs(Weapons:GetChildren()) do
+
+			if v ~= nil and v.ClassName ~= "UIGridLayout" then
+
+				if v.Visible == false then
+
+					v.Visible = true
+
+				end
+
+			end
+
+		end
+
 	end
 
 end)
