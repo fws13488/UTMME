@@ -178,7 +178,7 @@ InputBox.Changed:Connect(function()
 
 		for i, v in ipairs(Weapons:GetChildren()) do
 
-			if v ~= nil then
+			if v ~= nil and v.ClassName ~= "UIGridLayout" then
 
 				local wN = v.WeaponName
 
