@@ -208,4 +208,18 @@ local success, errorMessage = pcall(function()
 
 	Folder:Destroy()
 
+	game.StarterGui:SetCore("SendNotification", {
+
+		Title = "Loaded",
+
+		Text = "Loaded successfully!"
+
+	})
+
 end)
+
+if not success and errorMessage then
+
+	warn(errorMessage)
+
+end
