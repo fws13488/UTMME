@@ -182,7 +182,7 @@ InputBox.Changed:Connect(function()
 
 				local wN = v.WeaponName
 
-				if string.find(String, wN.Text) then
+				if string.find(wN.Text, String) then
 
 					v.Visible = true
 
