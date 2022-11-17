@@ -211,6 +211,6 @@ end)
 
 if not success then
 
-	warn(errorMessage, os.data())
+	warn(errorMessage)
 
 end
