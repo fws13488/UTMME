@@ -15,6 +15,7 @@ local WeaponName = Instance.new("TextLabel")
 local WeaponDamage = Instance.new("TextLabel")
 local EquipButton = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
+local InputBox = Instance.new("TextBox")
 local visibleButton = Instance.new("TextButton")
 
 ScreenGui.Name = ""
@@ -34,7 +35,7 @@ Title.Name = "Title"
 Title.Parent = Frame
 Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1.000
-Title.Size = UDim2.new(0, 431, 0, 50)
+Title.Size = UDim2.new(0, 214, 0, 50)
 Title.Font = Enum.Font.Arcade
 Title.Text = "Weapons Exploit"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -154,6 +155,66 @@ EquipButton.TextWrapped = true
 
 UICorner_2.CornerRadius = UDim.new(0, 3)
 UICorner_2.Parent = EquipButton
+
+InputBox.Name = "InputBox"
+InputBox.Parent = Frame
+InputBox.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
+InputBox.BorderColor3 = Color3.fromRGB(255, 255, 255)
+InputBox.Position = UDim2.new(0.441682607, 0, 0.0118110236, 0)
+InputBox.Size = UDim2.new(0, 200, 0, 38)
+InputBox.Font = Enum.Font.Arcade
+InputBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+InputBox.PlaceholderText = "Search"
+InputBox.Text = ""
+InputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+InputBox.TextScaled = true
+InputBox.TextSize = 14.000
+InputBox.TextWrapped = true
+InputBox.Changed:Connect(function()
+
+	if InputBox.Text ~= "" then
+
+		local String = InputBox.Text
+
+		for i, v in ipairs(Weapons:GetChildren()) do
+
+			if v ~= nil and v.ClassName ~= "UIGridLayout" then
+
+				local wN = v.WeaponName
+
+				if string.find(wN.Text, String) then
+
+					v.Visible = true
+
+				else
+
+					v.Visible = false
+
+				end
+
+			end
+
+		end
+
+	else
+
+		for i, v in ipairs(Weapons:GetChildren()) do
+
+			if v ~= nil and v.ClassName ~= "UIGridLayout" then
+
+				if v.Visible == false then
+
+					v.Visible = true
+
+				end
+
+			end
+
+		end
+
+	end
+
+end)
 
 visibleButton.Name = "visibleButton"
 visibleButton.Parent = ScreenGui
