@@ -20,6 +20,7 @@ local visibleButton = Instance.new("TextButton")
 
 ScreenGui.Name = ""
 ScreenGui.Parent = game.CoreGui
+ScreenGui.IgnoreGuiInset = true
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Frame.Parent = ScreenGui
