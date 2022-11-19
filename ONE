@@ -282,6 +282,8 @@ LocalPlayer.LOVE.Changed:Connect(function()
 
 	for i, v in ipairs(Weapons:GetChildren()) do
 
+		print("TEST")
+
 		local AttackTool = game:GetService("Lighting"):FindFirstChild("Weapons"):FindFirstChild(v.Name)
 
 		local damage = AttackTool:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (AttackTool:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
