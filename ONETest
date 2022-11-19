@@ -109,7 +109,11 @@ Refresh.MouseButton1Click:Connect(function()
 
 			if v.ClassName ~= "UIGridLayout" then
 
-				v:Destroy()
+				local success, errorMessage = pcall(function()
+
+					v:Destroy()
+
+				end
 
 			end
 
