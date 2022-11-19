@@ -105,49 +105,14 @@ Refresh.MouseButton1Click:Connect(function()
 
 		Refresh.Text = "Refreshing ..."
 
-		for i, v in ipairs(Weapons:GetChildren()) do
+		local NewUIGridLayout = UIGridLayout:Clone()
+		NewUIGridLayout.Parent = game:GetService("Lighting"):FindFirstChild("Weapons")
 
-			if v.ClassName ~= "UIGridLayout" then
+		Weapons:ClearAllChildren()
 
-				local success, errorMessage = pcall(function()
+		NewUIGridLayout.Parent = Weapons
 
-					v:Destroy()
-
-				end
-
-			end
-
-			wait()
-
-		end
-
-		for i, v in ipairs(game:GetService("Lighting"):FindFirstChild("Weapons"):GetChildren()) do
-
-			local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
-			local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
-			local tooldamage = damage + damageboost
-
-			local NewFrame = AWeaponFrame:Clone()
-			NewFrame.Name = v.Name
-			NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
-			NewFrame.WeaponDamage.Text = "Damage: "..tooldamage
-			NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
-			NewFrame.Parent = Weapons
-			NewFrame.EquipButton.MouseButton1Click:Connect(function()
-
-				local args = {
-
-					[1] = game:GetService("Lighting").Weapons:FindFirstChild(NewFrame.Name)
-
-				}
-
-				game:GetService("Lighting").EquipSkin:FireServer(unpack(args))
-
-			end)
-
-			wait()
-
-		end
+		refreshFunction()
 
 		CanRefresh = true
 
@@ -315,35 +280,41 @@ visibleButton.MouseButton1Click:Connect(function()
 
 end)
 
-for i, v in ipairs(game:GetService("Lighting"):FindFirstChild("Weapons"):GetChildren()) do
+function refreshFunction()
 
-	local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
-	local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
-	local tooldamage = damage + damageboost
+	for i, v in ipairs(game:GetService("Lighting"):FindFirstChild("Weapons"):GetChildren()) do
 
-	local NewFrame = AWeaponFrame:Clone()
-	NewFrame.Name = v.Name
-	NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
-	NewFrame.WeaponDamage.Text = "Damage: "..tooldamage
-	NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
-	NewFrame.Parent = Weapons
-	NewFrame.EquipButton.MouseButton1Click:Connect(function()
+		local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
+		local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
+		local tooldamage = damage + damageboost
 
-		local args = {
+		local NewFrame = AWeaponFrame:Clone()
+		NewFrame.Name = v.Name
+		NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
+		NewFrame.WeaponDamage.Text = "Damage: "..tooldamage
+		NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
+		NewFrame.Parent = Weapons
+		NewFrame.EquipButton.MouseButton1Click:Connect(function()
 
-			[1] = game:GetService("Lighting").Weapons:FindFirstChild(NewFrame.Name)
+			local args = {
 
-		}
+				[1] = game:GetService("Lighting").Weapons:FindFirstChild(NewFrame.Name)
 
-		game:GetService("Lighting").EquipSkin:FireServer(unpack(args))
+			}
 
-	end)
+			game:GetService("Lighting").EquipSkin:FireServer(unpack(args))
 
-	wait()
+		end)
+
+		wait()
+
+	end
 
 end
 
 Folder:Destroy()
+
+refreshFunction()
 
 game.StarterGui:SetCore("SendNotification", {
 
