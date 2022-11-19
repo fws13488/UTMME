@@ -2,6 +2,8 @@ local LocalPlayer = game.Players.LocalPlayer
 
 LocalPlayer:Kick("We are fixing a bug")
 
+return
+
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
