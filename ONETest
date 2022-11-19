@@ -92,28 +92,28 @@ Refresh.BorderColor3 = Color3.fromRGB(255, 255, 255)
 Refresh.Position = UDim2.new(0.573613763, 0, 0.0118110236, 0)
 Refresh.Size = UDim2.new(0, 150, 0, 38)
 Refresh.Font = Enum.Font.Arcade
-Refresh.Text = "Refresh"
+Refresh.Text = "Refresh (Coming Soon)"
 Refresh.TextColor3 = Color3.fromRGB(255, 255, 255)
 Refresh.TextScaled = true
 Refresh.TextSize = 14.000
 Refresh.TextWrapped = true
 Refresh.MouseButton1Click:Connect(function()
 
-	for i, v in ipairs(Weapons:GetChildren()) do
+	--for i, v in ipairs(Weapons:GetChildren()) do
 
-		if v.ClassName ~= "UIGridLayout" and v.Name ~= nil then
+		--if v.ClassName ~= "UIGridLayout" and v.Name ~= nil then
 
-			local damage = game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
-			local damageboost = math.floor(damage * game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
-			local tooldamage = damage + damageboost
+			--local damage = game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
+			--local damageboost = math.floor(damage * game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
+			--local tooldamage = damage + damageboost
 
-			v.WeaponDamage.Text = "Damage: "..tooldamage
+			--v.WeaponDamage.Text = "Damage: "..tooldamage
 
-			wait()
+			--wait()
 
-		end
+		--end
 
-	end
+	--end
 
 end)
 
