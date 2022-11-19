@@ -99,7 +99,21 @@ Refresh.TextSize = 14.000
 Refresh.TextWrapped = true
 Refresh.MouseButton1Click:Connect(function()
 
+	for i, v in ipairs(Weapons:GetChildren()) do
 
+		if v.ClassName ~= "UIGridLayout" then
+
+			local damage = game:GetService("Lighting"):FindFirstChild("Weapons"):FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (game:GetService("Lighting"):FindFirstChild("Weapons"):FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
+			local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
+			local tooldamage = damage + damageboost
+
+			v.WeaponDamage.Text = "Damage: "..tooldamage
+
+			wait()
+
+		end
+
+	end
 
 end)
 
