@@ -21,38 +21,6 @@ local visibleButton = Instance.new("TextButton")
 
 local CanRefresh = true
 
-local function refreshFunction()
-
-	for i, v in ipairs(game:GetService("Lighting"):FindFirstChild("Weapons"):GetChildren()) do
-
-		local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
-		local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
-		local tooldamage = damage + damageboost
-
-		local NewFrame = AWeaponFrame:Clone()
-		NewFrame.Name = v.Name
-		NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
-		NewFrame.WeaponDamage.Text = "Damage: "..tooldamage
-		NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
-		NewFrame.Parent = Weapons
-		NewFrame.EquipButton.MouseButton1Click:Connect(function()
-
-			local args = {
-
-				[1] = game:GetService("Lighting").Weapons:FindFirstChild(NewFrame.Name)
-
-			}
-
-			game:GetService("Lighting").EquipSkin:FireServer(unpack(args))
-
-		end)
-
-		wait()
-
-	end
-
-end
-
 ScreenGui.Name = ""
 ScreenGui.Parent = game.CoreGui
 ScreenGui.IgnoreGuiInset = true
@@ -137,14 +105,49 @@ Refresh.MouseButton1Click:Connect(function()
 
 		Refresh.Text = "Refreshing ..."
 
-		local NewUIGridLayout = UIGridLayout:Clone()
-		NewUIGridLayout.Parent = game:GetService("Lighting"):FindFirstChild("Weapons")
+		for i, v in ipairs(Weapons:GetChildren()) do
 
-		Weapons:ClearAllChildren()
+			if v.ClassName ~= "UIGridLayout" then
 
-		NewUIGridLayout.Parent = Weapons
+				local success, errorMessage = pcall(function()
 
-		refreshFunction()
+					v:Destroy()
+
+				end
+
+			end
+
+			wait()
+
+		end
+
+		for i, v in ipairs(game:GetService("Lighting"):FindFirstChild("Weapons"):GetChildren()) do
+
+			local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
+			local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
+			local tooldamage = damage + damageboost
+
+			local NewFrame = AWeaponFrame:Clone()
+			NewFrame.Name = v.Name
+			NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
+			NewFrame.WeaponDamage.Text = "Damage: "..tooldamage
+			NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
+			NewFrame.Parent = Weapons
+			NewFrame.EquipButton.MouseButton1Click:Connect(function()
+
+				local args = {
+
+					[1] = game:GetService("Lighting").Weapons:FindFirstChild(NewFrame.Name)
+
+				}
+
+				game:GetService("Lighting").EquipSkin:FireServer(unpack(args))
+
+			end)
+
+			wait()
+
+		end
 
 		CanRefresh = true
 
@@ -312,9 +315,35 @@ visibleButton.MouseButton1Click:Connect(function()
 
 end)
 
-Folder:Destroy()
+for i, v in ipairs(game:GetService("Lighting"):FindFirstChild("Weapons"):GetChildren()) do
 
-refreshFunction()
+	local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
+	local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
+	local tooldamage = damage + damageboost
+
+	local NewFrame = AWeaponFrame:Clone()
+	NewFrame.Name = v.Name
+	NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
+	NewFrame.WeaponDamage.Text = "Damage: "..tooldamage
+	NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
+	NewFrame.Parent = Weapons
+	NewFrame.EquipButton.MouseButton1Click:Connect(function()
+
+		local args = {
+
+			[1] = game:GetService("Lighting").Weapons:FindFirstChild(NewFrame.Name)
+
+		}
+
+		game:GetService("Lighting").EquipSkin:FireServer(unpack(args))
+
+	end)
+
+	wait()
+
+end
+
+Folder:Destroy()
 
 game.StarterGui:SetCore("SendNotification", {
 
