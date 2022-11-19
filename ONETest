@@ -1,5 +1,3 @@
-local LocalPlayer = game.Players.LocalPlayer
-
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
@@ -18,6 +16,8 @@ local EquipButton = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 local InputBox = Instance.new("TextBox")
 local visibleButton = Instance.new("TextButton")
+
+local LocalPlayer = game.Players.LocalPlayer or game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
 
 local CanRefresh = true
 
