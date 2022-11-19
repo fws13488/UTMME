@@ -5,6 +5,7 @@ local Frame = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
 local Close = Instance.new("TextButton")
 local Invisible = Instance.new("TextButton")
+local Refresh = Instance.new("TextButton")
 local Weapons = Instance.new("ScrollingFrame")
 local UIGridLayout = Instance.new("UIGridLayout")
 local Folder = Instance.new("Folder")
@@ -17,6 +18,8 @@ local EquipButton = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 local InputBox = Instance.new("TextBox")
 local visibleButton = Instance.new("TextButton")
+
+local CanRefresh = true
 
 ScreenGui.Name = ""
 ScreenGui.Parent = game.CoreGui
@@ -36,7 +39,7 @@ Title.Name = "Title"
 Title.Parent = Frame
 Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1.000
-Title.Size = UDim2.new(0, 214, 0, 50)
+Title.Size = UDim2.new(0, 128, 0, 50)
 Title.Font = Enum.Font.Arcade
 Title.Text = "Weapons Exploit"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -79,6 +82,74 @@ Invisible.MouseButton1Click:Connect(function()
 	Frame.Visible = false
 
 	visibleButton.Visible = true
+
+end)
+
+Refresh.Name = "Refresh"
+Refresh.Parent = Frame
+Refresh.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
+Refresh.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Refresh.Position = UDim2.new(0.573613763, 0, 0.0118110236, 0)
+Refresh.Size = UDim2.new(0, 150, 0, 38)
+Refresh.Font = Enum.Font.Arcade
+Refresh.Text = "Refresh"
+Refresh.TextColor3 = Color3.fromRGB(255, 255, 255)
+Refresh.TextScaled = true
+Refresh.TextSize = 14.000
+Refresh.TextWrapped = true
+Refresh.MouseButton1Click:Connect(function()
+
+	if CanRefresh == true then
+
+		CanRefresh = false
+
+		Refresh.Text = "Refreshing ..."
+
+		for i, v in ipairs(Weapons:GetChildren()) do
+
+			if v.ClassName ~= "UIGridLayout" then
+
+				v:Destroy()
+
+			end
+
+			wait()
+
+		end
+
+		for i, v in ipairs(game:GetService("Lighting"):FindFirstChild("Weapons"):GetChildren()) do
+
+			local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
+			local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
+			local tooldamage = damage + damageboost
+
+			local NewFrame = AWeaponFrame:Clone()
+			NewFrame.Name = v.Name
+			NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
+			NewFrame.WeaponDamage.Text = "Damage: "..tooldamage
+			NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
+			NewFrame.Parent = Weapons
+			NewFrame.EquipButton.MouseButton1Click:Connect(function()
+
+				local args = {
+
+					[1] = game:GetService("Lighting").Weapons:FindFirstChild(NewFrame.Name)
+
+				}
+
+				game:GetService("Lighting").EquipSkin:FireServer(unpack(args))
+
+			end)
+
+			wait()
+
+		end
+
+		CanRefresh = true
+
+		Refresh.Text = "Refresh"
+
+	end
 
 end)
 
@@ -161,8 +232,8 @@ InputBox.Name = "InputBox"
 InputBox.Parent = Frame
 InputBox.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
 InputBox.BorderColor3 = Color3.fromRGB(255, 255, 255)
-InputBox.Position = UDim2.new(0.441682607, 0, 0.0118110236, 0)
-InputBox.Size = UDim2.new(0, 200, 0, 38)
+InputBox.Position = UDim2.new(0.258126199, 0, 0.0118110236, 0)
+InputBox.Size = UDim2.new(0, 150, 0, 38)
 InputBox.Font = Enum.Font.Arcade
 InputBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
 InputBox.PlaceholderText = "Search"
@@ -277,22 +348,3 @@ game.StarterGui:SetCore("SendNotification", {
 	Text = "Loaded successfully!"
 
 })
-
-LocalPlayer.LOVE.Changed:Connect(function()
-
-	for i, v in ipairs(Weapons:GetChildren()) do
-
-		local AttackTool = game:GetService("Lighting"):FindFirstChild("Weapons"):FindFirstChild(v.Name)
-
-		local damage = AttackTool:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (AttackTool:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
-		local damageboost = math.floor(damage * AttackTool:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
-		local tooldamage = damage + damageboost
-
-		local WeaponDamageText = v.WeaponDamage
-		WeaponDamageText.Text = "Damage: "..tooldamage
-
-		wait()
-
-	end
-
-end)
