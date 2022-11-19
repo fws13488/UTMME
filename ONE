@@ -17,7 +17,7 @@ local UICorner_2 = Instance.new("UICorner")
 local InputBox = Instance.new("TextBox")
 local visibleButton = Instance.new("TextButton")
 
-local LocalPlayer = game.Players.LocalPlayer or game.Players:FindFirstChild(game.Players.LocalPlayer)
+local LocalPlayer = game.Players.LocalPlayer or game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
 
 LocalPlayer:Kick("I am fixing a bug")
 
