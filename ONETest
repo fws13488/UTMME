@@ -280,16 +280,36 @@ game.StarterGui:SetCore("SendNotification", {
 
 LocalPlayer.LOVE.Changed:Connect(function()
 
-	for i, v in ipairs(Weapons:GetChildren()) do
+	local NewUIGridLayout = UIGridLayout:Clone()
+	NewUIGridLayout.Parent = ScreenGui
 
-		local AttackTool = game:GetService("Lighting"):FindFirstChild("Weapons"):FindFirstChild(v.Name)
+	Weapons:ClearAllChildren()
 
-		local damage = AttackTool:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (AttackTool:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
-		local damageboost = math.floor(damage * AttackTool:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
+	NewUIGridLayout.Parent = Weapons
+
+	for i, v in ipairs(game:GetService("Lighting"):FindFirstChild("Weapons"):GetChildren()) do
+
+		local damage = v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
+		local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
 		local tooldamage = damage + damageboost
 
-		local WeaponDamageText = v.WeaponDamage
-		WeaponDamageText.Text = "Damage: "..tooldamage
+		local NewFrame = AWeaponFrame:Clone()
+		NewFrame.Name = v.Name
+		NewFrame.WeaponName.Text = v:FindFirstChild("WeaponName").Value
+		NewFrame.WeaponDamage.Text = "Damage: "..tooldamage
+		NewFrame.ImageLabel.Image = v:FindFirstChild("Tool"):FindFirstChild("AttackTool").TextureId
+		NewFrame.Parent = Weapons
+		NewFrame.EquipButton.MouseButton1Click:Connect(function()
+
+			local args = {
+
+				[1] = game:GetService("Lighting").Weapons:FindFirstChild(NewFrame.Name)
+
+			}
+
+			game:GetService("Lighting").EquipSkin:FireServer(unpack(args))
+
+		end)
 
 		wait()
 
