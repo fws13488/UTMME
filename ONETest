@@ -103,7 +103,7 @@ Refresh.MouseButton1Click:Connect(function()
 
 		if v.ClassName ~= "UIGridLayout" then
 
-			local damage = game:GetService("Lighting"):FindFirstChild("Weapons"):FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (game:GetService("Lighting"):FindFirstChild("Weapons"):FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
+			local damage = game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
 			local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
 			local tooldamage = damage + damageboost
 
