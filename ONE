@@ -1,6 +1,6 @@
 local LocalPlayer = game.Players.LocalPlayer
 
-LocalPlayer:Kick("I are fixing a bug")
+LocalPlayer:Kick("I am fixing a bug")
 
 return
 
