@@ -1,4 +1,4 @@
-if game.CoreGui:FindFirstChild("") == true then
+if game.CoreGui:FindFirstChild("") then
 
 	game.CoreGui:FindFirstChild(""):Destroy()
 
