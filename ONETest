@@ -1,4 +1,8 @@
-game.CoreGui:FindFirstChild(""):Destroy()
+if game.CoreGui:FindFirstChild("") then
+
+	game.CoreGui:FindFirstChild(""):Destroy()
+
+end
 
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
