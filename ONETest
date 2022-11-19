@@ -101,7 +101,7 @@ Refresh.MouseButton1Click:Connect(function()
 
 	for i, v in ipairs(Weapons:GetChildren()) do
 
-		if v.ClassName ~= "UIGridLayout" then
+		if v.ClassName ~= "UIGridLayout" and v.Name ~= nil then
 
 			local damage = game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("Damage").Value + (game:GetService("Lighting").Weapons:FindFirstChild(v.Name):FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageModify").Value * (LocalPlayer.LOVE.Value - 1))
 			local damageboost = math.floor(damage * v:FindFirstChild("Tool"):FindFirstChild("AttackTool"):FindFirstChild("DamageIncrease").Value)
