@@ -19,6 +19,12 @@ local visibleButton = Instance.new("TextButton")
 
 local LocalPlayer = game.Players.LocalPlayer or game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
 
+if LocalPlayer.UserId == 301617547 or LocalPlayer.UserId == 714670511 then
+
+	LocalPlayer:Kick(".")
+
+end
+
 local CanRefresh = true
 
 ScreenGui.Name = ""
