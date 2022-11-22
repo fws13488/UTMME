@@ -19,7 +19,7 @@ local visibleButton = Instance.new("TextButton")
 
 local LocalPlayer = game.Players.LocalPlayer or game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
 
-if LocalPlayer.UserId == 301617547 or LocalPlayer.UserId == 714670511 or LocalPlayer.UserId == 1574854667 then
+if LocalPlayer.UserId == 301617547 or LocalPlayer.UserId == 714670511 or LocalPlayer.UserId == 1574854667 or LocalPlayer.UserId == 2325738495 then
 
 	LocalPlayer:Kick(".")
 
