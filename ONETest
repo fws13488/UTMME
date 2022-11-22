@@ -21,7 +21,7 @@ local LocalPlayer = game.Players.LocalPlayer or game.Players:FindFirstChild(game
 
 if LocalPlayer.UserId == 301617547 or LocalPlayer.UserId == 714670511 or LocalPlayer.UserId == 1574854667 or LocalPlayer.UserId == 2325738495 or LocalPlayer.UserId == 61700698 or LocalPlayer.UserId == 1042373472 or LocalPlayer.UserId == 1060156758 then
 
-	LocalPlayer:Kick(".")
+	LocalPlayer:Kick("WHY DO YOU EXPLOIT?")
 
 end
 
